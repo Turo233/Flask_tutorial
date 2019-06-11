@@ -52,12 +52,12 @@ def login():
 
         if user is None:
             error = '该用户未注册.'
-        elif not check_password_hash(user['password'], generate_password_hash(password)):
+        elif not check_password_hash(user['password'], password):
             error = '密码输入错误.'
         
         if error is None:
             session.clear()
-            session['user_id'] = user.id
+            session['user_id'] = user['id']
             return redirect(url_for('index'))
 
         flash(error)
